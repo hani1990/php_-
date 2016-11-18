@@ -432,4 +432,10 @@ function is_weixin_browser(){
     return false;
 }
 
+function checkEmail($mail){
+	return preg_match('/^[\w.\-]+@(?:[a-z0-9]+(?:-[a-z0-9]+)*\.)+[a-z]{2,6}$/', $mail);
+}
 
+function checkPhone($phone){
+	return preg_match('/^1\d{10}$/', $phone);
+}
