@@ -15,7 +15,7 @@
                 return false;
             }
 
-        }
+        
         try{
             $size=strlen($img);
             //文件大小
