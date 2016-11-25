@@ -29,3 +29,22 @@
             return false;
         }
   }
+
+
+static public function curl_download($remote, $local, $timeout=60) {
+		$hander = curl_init();
+		$fp = fopen($local,'wb');
+		curl_setopt($hander,CURLOPT_URL,$remote);
+		curl_setopt($hander,CURLOPT_FILE,$fp);
+		curl_setopt($hander,CURLOPT_HEADER,0);
+		curl_setopt($hander,CURLOPT_FOLLOWLOCATION,1);
+		curl_setopt($hander,CURLOPT_TIMEOUT,$timeout);
+		$curl_ret = curl_exec($hander);
+		curl_close($hander);
+		fclose($fp);
+
+		if($curl_ret)
+			return true;
+		
+		return false;
+	}
