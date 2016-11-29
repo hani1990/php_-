@@ -444,7 +444,7 @@ function checkPhone($phone){
     /**
     把用户输入的文本转义（主要针对特殊符号和emoji表情）
      */
-    static  function userTextEncode($str){
+      function userTextEncode($str){
         if(!is_string($str))return $str;
         if(!$str || $str=='undefined')return '';
 
@@ -457,10 +457,21 @@ function checkPhone($phone){
     /**
     解码上面的转义
      */
-    static function userTextDecode($str){
+     function userTextDecode($str){
         $text = json_encode($str); //暴露出unicode
         $text = preg_replace_callback('/\\\\\\\\/i',function($str){
             return '\\';
         },$text); //将两条斜杠变成一条，其他不动
         return json_decode($text);
     }
+
+	 public  function GetPageContent($url){
+		$ch = curl_init(); 
+		$timeout = 5;
+		curl_setopt($ch, CURLOPT_URL, $url); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout); 
+		$contents = curl_exec($ch); 
+		curl_close($ch); 
+		return $contents;
+	}
