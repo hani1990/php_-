@@ -71,6 +71,7 @@ class common
         }
         return $time;
     }
+    
 
     public static function get_days($day_sta, $day_end = true, $range = 86400)
     {
