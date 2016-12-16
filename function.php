@@ -475,3 +475,23 @@ function checkPhone($phone){
 		curl_close($ch); 
 		return $contents;
 	}
+//文件上传
+function upload_file($file){
+     if (class_exists('\CURLFile')) {
+            $post_data = array('mp3' => new \CURLFile(realpath($file)));
+        } else {
+            $post_data = array(
+                //要上传的本地文件地址
+                "mp3" => "@".$file,
+            );
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch , CURLOPT_URL , $url);
+        curl_setopt($ch , CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch , CURLOPT_POST, 1);
+        curl_setopt($ch , CURLOPT_POSTFIELDS, $post_data);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+}
