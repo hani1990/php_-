@@ -6,7 +6,7 @@
  * @author seatle<seatle@seatle.com>
  * @version $Id$
  */
-class common
+class util
 {
     /**
      * 文件锁
